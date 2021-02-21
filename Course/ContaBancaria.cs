@@ -17,9 +17,10 @@ namespace Course
             Numero = numero;
             Titular = titular;
         }
-        public ContaBancaria(string titular, int numero, double saldo) : this(titular, numero) 
+        public ContaBancaria(string titular, int numero, double depositoInicial) : this(titular, numero) 
         {
-            Saldo = saldo;
+            // Ao invés de atribuir "depositoInicial" para variavel "Saldo", realiza o depósito, usando método "Deposito()".
+            Deposito(depositoInicial);
         }
         public void Deposito(double quantia) 
         {
