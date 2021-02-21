@@ -54,7 +54,7 @@ namespace Course
             bool b1 = String.IsNullOrEmpty(original);
             Console.WriteLine("IsNullOrEmpty: " + b1);
 
-            // testando se a variável é nula possui espaço em branco
+            // testando se a variável é nula ou um espaço em branco
             bool b2 = String.IsNullOrWhiteSpace(original);
             Console.WriteLine("IsNullOrWhiteSpace: " + b2);
 
