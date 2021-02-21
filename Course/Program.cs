@@ -7,14 +7,19 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            int variavel = 10;
-            Calculadora.Triple(ref variavel);
-            Console.WriteLine(variavel);
+            // Uso de "foreach": usado para percorrer (iterar) uma coleção (vetor; lista e tantas outras coleções). Pode substituir o for
+            string[] vect = new string[] { "Maria", "Alex", "Bob" };
 
-            int a = 10;
-            int triple;
-            Calculadora.Triple(a, out triple);
-            Console.WriteLine(triple);
+            Console.WriteLine("-----------------Usando for--------------");
+            for (int i = 0; i < vect.Length; i++)
+            {
+                Console.WriteLine(vect[i]);
+            }
+            Console.WriteLine("-----------------Usando foreach--------------");
+            foreach (string obj in vect)
+            {
+                Console.WriteLine(obj);
+            }
         }
     }
 }
