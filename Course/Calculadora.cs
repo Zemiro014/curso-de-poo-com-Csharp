@@ -58,5 +58,18 @@ namespace Course
             }
             return sum;
         }
+        // Termina aqui a definição de função com parâmetros variáveis
+
+        // Modificador de parâmetros ref: trabalha com a refer~encia da variável
+        public static void Triple(ref int x)
+        {
+            x = x * 3;
+        }
+
+        // Modificador de parâmetros out: permite que um valor de origem seja passada para outro valor de saída (variável que possui um "out")
+        public static void Triple(int origin, out int result)
+        {
+            result = origin * 3;
+        }
     }
 }
