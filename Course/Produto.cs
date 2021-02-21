@@ -10,7 +10,7 @@ namespace Course
         private string _nome;
 
         // Uso de properties auto-implementadas
-        public double Preco { get; private set; }
+        public double Preco { get; set; }
         public int Quantidade { get; private set; }
 
         public Produto(string nome, double preco, int quantidade)
