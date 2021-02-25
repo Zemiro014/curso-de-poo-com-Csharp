@@ -1,5 +1,5 @@
 ﻿using Course.Entities.Enums;
-using Course.Entities;
+using Course.Comparison;
 using System;
 using System.Globalization;
 using System.Collections.Generic;
@@ -12,21 +12,41 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            Client a = new Client
-            {
-                Nome = "Maria",
-                Email = "maria@gmail.com"
-            };
+            List<Product02> list = new List<Product02>();
+            list.Add(new Product02("TV", 900.00));
+            list.Add(new Product02("Iphone X", 1200.00));
+            list.Add(new Product02("Tablet", 450.00));
 
-            Client b = new Client
-            {
-                Nome = "Alex",
-                Email = "alex@gmail.com"
-            };
+            /*
+                // Fazendo uma comparação dos objectos da nossa lista usando "Delegate"
+                Comparison<Product02> comp = CompareProducts; // Definindo um "delegate" atribuindo-lhe uma função declarada "CompareProducts"
+                list.Sort(comp);
 
-            Console.WriteLine(a.Equals(b));
-            Console.WriteLine(a.GetHashCode());
-            Console.WriteLine(b.GetHashCode());
+                Para este caso tivemos que usar uma função declarada "CompareProducts", para realizar um "Sort()" com delegate.
+
+            Outra forma seria usar o "Lambda". Nesta abordagem não precisamos declarar nenhuma função. Nela usamos a função "anonima" 
+            */
+
+            /*
+                // Usando Lambda:
+                Comparison<Product02> comp = (p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
+                list.Sort(comp);
+            */
+
+            // Outra forma de usar Lambda:
+            list.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
+
+            foreach (Product02 item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
+
+        /*
+        static int CompareProducts(Product02 p1, Product02 p2)
+        {
+            return p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
+        }
+        */
     }
 }
