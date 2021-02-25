@@ -3,54 +3,26 @@ using Course.Entities;
 using System;
 using System.Globalization;
 using System.Collections.Generic;
+using Course.Generics;
 
 namespace Course
 {
     class Program
     {
-        static string isBalanced(string s) 
-        {
-            Stack<char> stack = new Stack<char>();
-            for (int i = 0; i < s.Length; i++) 
-            {
-                if (s[i] == '(' || s[i] == '{' || s[i] == '[')
-                {
-                    stack.Push(s[i]);
-                }
-                else 
-                {
-                    if (stack.Count == 0)
-                    {
-                        return "NO";
-                    }                    
-                    else 
-                    {
-                        char pop_val = stack.Pop();
-                        if (s[i] == ')' && pop_val != '(') 
-                        {
-                            return "NO";
-                        }
-                        else if (s[i] == '}' && pop_val != '{')
-                        {
-                            return "NO";
-                        }
-                        else if (s[i] == ']' && pop_val != '[')
-                        {
-                            return "NO";
-                        }
-                    }
-                }
-            }
-
-            if (stack.Count == 0)
-            {
-                return "YES";
-            }
-            else { return "NO"; }
-        }
         static void Main(string[] args)
         {
-            Console.WriteLine(isBalanced("{{[[(())]]}}"));
+            PrintService printService = new PrintService();
+            Console.WriteLine("How many value?");
+            int n = int.Parse(Console.ReadLine());
+
+            for (int i = 0; i < n; i++) 
+            {
+                int x = int.Parse(Console.ReadLine());
+                printService.AddValue(x);
+            }
+            printService.Print();
+            Console.WriteLine();
+            Console.WriteLine("First: "+printService.First());
         }
     }
 }
