@@ -5,48 +5,28 @@ using System.Globalization;
 using System.Collections.Generic;
 using Course.Generics;
 using Course.GetHashCode_Equals;
+using Course.LambdaDelegateLinq;
 
 namespace Course
 {
     class Program
     {
+        // Declarando delegate sem retorno que recebe dois double como parametros.
+        delegate void BinaryNumericOperation(double n1, double n2);
         static void Main(string[] args)
         {
-            List<Product02> list = new List<Product02>();
-            list.Add(new Product02("TV", 900.00));
-            list.Add(new Product02("Iphone X", 1200.00));
-            list.Add(new Product02("Tablet", 450.00));
+            double a = 10;
+            double b = 12;
 
             /*
-                // Fazendo uma comparação dos objectos da nossa lista usando "Delegate"
-                Comparison<Product02> comp = CompareProducts; // Definindo um "delegate" atribuindo-lhe uma função declarada "CompareProducts"
-                list.Sort(comp);
+             *  Declarando um Multicast Delegate : Usado para guardar referência de duas ou mais funções e executar elas (as funções) na ordem da atribuição.
+             *  
+             *  É prático usar o Multicast Delegate para funções sem retorno - "Void"
+             */
+            BinaryNumericOperation op = CalculationService.ShowSum; 
+            op += CalculationService.ShowMax;
 
-                Para este caso tivemos que usar uma função declarada "CompareProducts", para realizar um "Sort()" com delegate.
-
-            Outra forma seria usar o "Lambda". Nesta abordagem não precisamos declarar nenhuma função. Nela usamos a função "anonima" 
-            */
-
-            /*
-                // Usando Lambda:
-                Comparison<Product02> comp = (p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
-                list.Sort(comp);
-            */
-
-            // Outra forma de usar Lambda:
-            list.Sort((p1, p2) => p1.Name.ToUpper().CompareTo(p2.Name.ToUpper()));
-
-            foreach (Product02 item in list)
-            {
-                Console.WriteLine(item);
-            }
+            op.Invoke(a, b);
         }
-
-        /*
-        static int CompareProducts(Product02 p1, Product02 p2)
-        {
-            return p1.Name.ToUpper().CompareTo(p2.Name.ToUpper());
-        }
-        */
     }
 }
