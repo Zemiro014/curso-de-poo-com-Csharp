@@ -4,6 +4,7 @@ using System;
 using System.Globalization;
 using System.Collections.Generic;
 using Course.Generics;
+using Course.GetHashCode_Equals;
 
 namespace Course
 {
@@ -11,24 +12,21 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            List<Product> list = new List<Product>();
-
-            Console.Write("Ente N: ");
-            int n = int.Parse(Console.ReadLine());
-
-            for (int i = 0; i < n; i++)
+            Client a = new Client
             {
-                string[] vect = Console.ReadLine().Split(',');
-                String name = vect[0];
-                double price = double.Parse(vect[1], CultureInfo.InvariantCulture);
-                list.Add(new Product(name, price));
-            }
+                Nome = "Maria",
+                Email = "maria@gmail.com"
+            };
 
-            CalculationServiceComMetodosGenerics calculationService = new CalculationServiceComMetodosGenerics();
-            Product max = calculationService.Max(list);
+            Client b = new Client
+            {
+                Nome = "Alex",
+                Email = "alex@gmail.com"
+            };
 
-            Console.WriteLine("Max: ");
-            Console.WriteLine(max);
+            Console.WriteLine(a.Equals(b));
+            Console.WriteLine(a.GetHashCode());
+            Console.WriteLine(b.GetHashCode());
         }
     }
 }
