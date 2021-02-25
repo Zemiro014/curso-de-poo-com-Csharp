@@ -11,21 +11,24 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            // PrintServiceString printService = new PrintServiceString();
-            //PrintServiceObject printService = new PrintServiceObject();
+            List<Product> list = new List<Product>();
 
-            PrintServiceGeneric<int> printService = new PrintServiceGeneric<int>();
-            Console.WriteLine("How many value?");
+            Console.Write("Ente N: ");
             int n = int.Parse(Console.ReadLine());
 
-            for (int i = 0; i < n; i++) 
+            for (int i = 0; i < n; i++)
             {
-                int x = int.Parse(Console.ReadLine());
-                printService.AddValue(x);
+                string[] vect = Console.ReadLine().Split(',');
+                String name = vect[0];
+                double price = double.Parse(vect[1], CultureInfo.InvariantCulture);
+                list.Add(new Product(name, price));
             }
-            printService.Print();
-            Console.WriteLine();
-            Console.WriteLine("First: "+printService.First());
+
+            CalculationServiceComMetodosGenerics calculationService = new CalculationServiceComMetodosGenerics();
+            Product max = calculationService.Max(list);
+
+            Console.WriteLine("Max: ");
+            Console.WriteLine(max);
         }
     }
 }
