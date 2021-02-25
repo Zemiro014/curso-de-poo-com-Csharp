@@ -1,10 +1,7 @@
-﻿using Course.Entities.Enums;
-using Course.Comparison;
+﻿
 using System;
 using System.Globalization;
 using System.Collections.Generic;
-using Course.Generics;
-using Course.GetHashCode_Equals;
 using Course.LambdaDelegateLinq;
 
 namespace Course
@@ -15,18 +12,28 @@ namespace Course
         delegate void BinaryNumericOperation(double n1, double n2);
         static void Main(string[] args)
         {
-            double a = 10;
-            double b = 12;
+            List<Product> list = new List<Product>();
+            list.Add(new Product("Tv", 900.00));
+            list.Add(new Product("Mouse", 50.00));
+            list.Add(new Product("Tablet", 350.50));
+            list.Add(new Product("HD Case", 80.90));
 
-            /*
-             *  Declarando um Multicast Delegate : Usado para guardar referência de duas ou mais funções e executar elas (as funções) na ordem da atribuição.
-             *  
-             *  É prático usar o Multicast Delegate para funções sem retorno - "Void"
-             */
-            BinaryNumericOperation op = CalculationService.ShowSum; 
-            op += CalculationService.ShowMax;
+            // Vamos usar o "Predicate" para remover da lista somente aqueles cujo preço mínimo seja 100.
 
-            op.Invoke(a, b);
+            list.RemoveAll(ProductTest);
+                        // Ou
+            list.RemoveAll(p => p.Price >= 100.00);
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        // Explicando o funcionamento de um "Predicate" usando Lambda
+        public static bool ProductTest(Product p)
+        {
+            return p.Price >= 100;
         }
     }
 }
