@@ -11,7 +11,10 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            PrintService printService = new PrintService();
+            // PrintServiceString printService = new PrintServiceString();
+            //PrintServiceObject printService = new PrintServiceObject();
+
+            PrintServiceGeneric<int> printService = new PrintServiceGeneric<int>();
             Console.WriteLine("How many value?");
             int n = int.Parse(Console.ReadLine());
 

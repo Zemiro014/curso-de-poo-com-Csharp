@@ -4,12 +4,14 @@ using System.Text;
 
 namespace Course.Generics
 {
-    class PrintService
+
+    // Essa é uma classe genérica que permite realizar as funcionalidades contidas nela independentemente do tipo que se desejar dar a ela.
+    class PrintServiceGeneric<T>
     {
-        private int[] _values = new int[10];
+        private T[] _values = new T[10];
         private int count = 0;
 
-        public void AddValue(int value)
+        public void AddValue(T value)
         {
             if (count == 10)
             {
@@ -19,7 +21,7 @@ namespace Course.Generics
             count++;
         }
 
-        public int First() 
+        public T First()
         {
             if (count == 0)
             {
@@ -28,12 +30,12 @@ namespace Course.Generics
             return _values[0];
         }
 
-        public void Print() 
+        public void Print()
         {
             Console.Write("[");
-            for (int i = 0; i < count - 1; i++) 
+            for (int i = 0; i < count - 1; i++)
             {
-                Console.Write(_values[i]+", ");
+                Console.Write(_values[i] + ", ");
             }
             if (count > 0)
             {
